@@ -34,7 +34,6 @@ def get_min_max(ser, input_num):
             if elapsed_time >= 2:
                 vstring = message.decode('utf-8').rstrip().lstrip().split(',')
                 raw_input_value = int(vstring[input_num].rstrip().lstrip())
-                print(raw_input_value)
                 min_value = min(min_value, raw_input_value)
                 max_value = max(max_value, raw_input_value)
         except Exception as e:
@@ -67,8 +66,8 @@ def drive_mode():
                 j.set_axis(pyvjoy.HID_USAGE_Z, int(z_ax))
                 j.set_axis(pyvjoy.HID_USAGE_X, int(x_ax))
                 j.set_axis(pyvjoy.HID_USAGE_Y, int(y_ax))
-                print(vstring[0], vstring[1], vstring[2], vstring[3], vstring[4])
-                print(y_ax, z_ax, x_ax)
+                #print(vstring[0], vstring[1], vstring[2], vstring[3], vstring[4])
+                #print(y_ax, z_ax, x_ax)
             except Exception as e:
                 print(f"Error: {e}")
     except KeyboardInterrupt:
