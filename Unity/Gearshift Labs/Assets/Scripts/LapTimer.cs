@@ -14,9 +14,12 @@ public class LapTimer : MonoBehaviour
     public GameObject lapText;
     public GameObject bestLapText;
 
+    private int checkpoint;
+
     // Start is called before the first frame update
     void Start()
-    {
+    {  
+        checkpoint = 0;
         bestTime = float.MaxValue;
         loadTime();
     }
@@ -29,21 +32,24 @@ public class LapTimer : MonoBehaviour
             elapsedTime = Time.time - startTime;
             int minutes = (int)(elapsedTime/60);
             int seconds = (int)(elapsedTime-minutes*60);
-            lapText.GetComponent<Text>().text = "Laikas: " + minutes + ":" + seconds;
+            lapText.GetComponent<Text>().text = "Laikas: " + minutes + ":" + seconds + "\n" + "Kontrolinis taskas: " + checkpoint + "/3";
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(elapsedTime != null && elapsedTime > 10 && elapsedTime < bestTime){
+        if((elapsedTime != null && elapsedTime > 10 && checkpoint >= 3) || (hasStartedLap == false)){
+            checkpoint = 0;
             int minutes = (int)(elapsedTime/60);
             int seconds = (int)(elapsedTime-minutes*60);
-            bestLapText.GetComponent<Text>().text = "Rekordas: " + minutes + ":" + seconds;
-            bestTime=elapsedTime;
-            saveTime(bestTime);
+            if (elapsedTime < bestTime){
+                bestLapText.GetComponent<Text>().text = "Rekordas: " + minutes + ":" + seconds;
+                bestTime=elapsedTime;
+                saveTime(bestTime);
+            }
+            hasStartedLap = true;
+            startTime = Time.time;
         }
-        hasStartedLap = true;
-        startTime = Time.time;
 
     }
 
@@ -62,5 +68,11 @@ public class LapTimer : MonoBehaviour
         string filePath = Application.persistentDataPath + "/record.txt";
         File.WriteAllText(filePath, time.ToString());
 
+    }
+
+    public void IncrementCheckPoint(){
+        if(checkpoint < 3){
+            checkpoint++;
+        }
     }
 }
