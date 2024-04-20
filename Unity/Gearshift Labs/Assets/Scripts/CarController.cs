@@ -6,17 +6,17 @@ using Random = UnityEngine.Random;
 
 public class CarController : MonoBehaviour
 {
-    private float horizontalInput, verticalInput;
-    private float currentSteerAngle, currentbreakForce;
-    private bool isBreaking, isHandbrake;
+     float horizontalInput, verticalInput;
+     float currentSteerAngle, currentbreakForce;
+    private bool isBreaking;
     private bool Reset;
 
-    public AudioSource audioSource;
-    public AudioClip[] songs;
+
 
     // Settings
-    [SerializeField] private float motorForce, breakForce, maxSteerAngle,HandbreakForce;
+    [SerializeField] private float motorForce, breakForce, maxSteerAngle;
     private float speed = 0.0f;
+    private int CurrentGear = 1;
 
     // Wheel Colliders
     [SerializeField] private WheelCollider frontLeftWheelCollider, frontRightWheelCollider;
@@ -29,9 +29,14 @@ public class CarController : MonoBehaviour
 
     [SerializeField] private Rigidbody Carbody;
     [SerializeField] private AudioSource carAudioSource;
-    [SerializeField] private float startingPitch = 1f; // Starting pitch of the engine sound
 
-    private void FixedUpdate()
+
+    [SerializeField] public float[] gearRatios = { 0.0f, 4.0f, 3.0f, 2.0f, 1.5f, 1.2f, 1.0f }; // Example gear ratios
+    [SerializeField] public float[] maxSpeedsPerGear = { 0.001f, 20.0f, 50.0f, 90.0f, 140.0f, 200.0f, 240.0f }; // Example max speeds per gear
+
+    private bool hasShifted = false;
+
+    private void Update()
     {
         ResetCar();
         GetInput();
@@ -40,15 +45,12 @@ public class CarController : MonoBehaviour
         UpdateWheels();
         CarSounds();
 
-        if (!audioSource.isPlaying)
-        {
-            // Play a new random song
-            PlayRandomSong();
-        }
+        
     }
 
     private void GetInput()
     {
+        hasShifted = false;
         // Steering Input
         horizontalInput = Input.GetAxis("Horizontal");
 
@@ -73,33 +75,51 @@ public class CarController : MonoBehaviour
 
         // Breaking Input
         isBreaking = Input.GetKey(KeyCode.Space);
-        
- 
 
-    }
-
-   
-
-    private void PlayRandomSong()
-    {
-        // Check if there are songs in the array
-        if (songs.Length == 0)
+        if (Input.GetKeyDown(KeyCode.E) && CurrentGear < 5 && !hasShifted)
         {
-            Debug.LogError("No songs found in the array!");
-            return;
+            CurrentGear++;
+            Debug.Log("Upshifted to gear " + CurrentGear);
+            Debug.Log("MaxSpeed for gear " + maxSpeedsPerGear[CurrentGear] );
+            hasShifted = true; // Set the flag to true to indicate a shift action has been performed
+        }
+        else if (Input.GetKeyDown(KeyCode.Q) && CurrentGear > 0 && !hasShifted)
+        {
+            CurrentGear--;
+            Debug.Log("downshifted to gear " + CurrentGear);
+            Debug.Log("MaxSpeed for gear " + maxSpeedsPerGear[CurrentGear]);
+            hasShifted = true; // Set the flag to true to indicate a shift action has been performed
         }
 
-        // Select a random song from the array
-        int randomIndex = Random.Range(0, songs.Length);
-        AudioClip randomSong = songs[randomIndex];
 
-        // Set the selected song as the audio clip to play
-        audioSource.clip = randomSong;
-
-        // Play the selected song
-        audioSource.Play();
     }
+       private void HandleMotor()
+        {
+            float gearRatio = gearRatios[CurrentGear];
+            rearLeftWheelCollider.motorTorque = verticalInput * motorForce*gearRatio;
+            rearRightWheelCollider.motorTorque = verticalInput * motorForce * gearRatio;
+            frontRightWheelCollider.motorTorque = verticalInput * motorForce * gearRatio;
+            frontLeftWheelCollider.motorTorque = verticalInput * motorForce * gearRatio;
 
+            float maxSpeed = maxSpeedsPerGear[CurrentGear];
+            if (speed > maxSpeed)
+            {
+                // Apply braking force to limit speed
+                isBreaking = true;
+                currentbreakForce = breakForce*10;
+            }
+            else
+            {
+                isBreaking = false;
+                currentbreakForce = 0f;
+            }
+            currentbreakForce = isBreaking ? breakForce : 0f;
+            // Adjust braking force based on whether handbrake is engaged
+       
+
+            ApplyBreaking();
+        
+        }
     private void CarSounds()
     {
         float minSpeed = 0f, maxSpeed = 180f;
@@ -117,24 +137,7 @@ public class CarController : MonoBehaviour
  
     }
 
-    private void HandleMotor()
-    {
-
-        rearLeftWheelCollider.motorTorque = verticalInput * motorForce;
-        rearRightWheelCollider.motorTorque = verticalInput * motorForce;
-        frontRightWheelCollider.motorTorque = verticalInput * motorForce;
-        frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
-        currentbreakForce = isBreaking ? breakForce : 0f;
-        // Adjust braking force based on whether handbrake is engaged
-        if (isHandbrake)
-        {
-            currentbreakForce = HandbreakForce * breakForce;
-            ApplyHandbrake();
-        }
-
-        ApplyBreaking();
-        
-    }
+    
     private void ApplyBreaking()
     {
         frontRightWheelCollider.brakeTorque = currentbreakForce;
@@ -142,11 +145,7 @@ public class CarController : MonoBehaviour
         rearLeftWheelCollider.brakeTorque = currentbreakForce;
         rearRightWheelCollider.brakeTorque = currentbreakForce;
     }
-    private void ApplyHandbrake()
-    {
-        rearLeftWheelCollider.brakeTorque = currentbreakForce;
-        rearRightWheelCollider.brakeTorque = currentbreakForce;
-    }
+   
 
 
     private void HandleSteering()
