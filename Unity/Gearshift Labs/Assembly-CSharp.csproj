@@ -69,16 +69,12 @@
     <Compile Include="Assets\GameScript.cs" />
     <Compile Include="Assets\Sketchfab For Unity\Scripts\SketchfabUI.cs" />
     <Compile Include="Assets\Scripts\CarController.cs" />
-<<<<<<< Updated upstream
-    <Compile Include="Assets\CarController.cs" />
-    <Compile Include="Assets\Sketchfab For Unity\Scripts\SketchfabImporter.cs" />
-    <Compile Include="Assets\Scripts\advancedCarControls.cs" />
-=======
     <Compile Include="Assets\Scripts\MusicScript.cs" />
     <Compile Include="Assets\Sketchfab For Unity\Scripts\SketchfabImporter.cs" />
->>>>>>> Stashed changes
+    <Compile Include="Assets\Scripts\LapTimer.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Sketchfab For Unity\Scripts\SketchfabLogger.cs" />
+    <Compile Include="Assets\Scripts\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\listScript.cs" />
     <Compile Include="Assets\Sketchfab For Unity\Scripts\AssetBrowser\SketchfabBrowserManager.cs" />
     <Compile Include="Assets\Sketchfab For Unity\Scripts\AssetBrowser\SketchfabBrowserWindow.cs" />
@@ -112,10 +108,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\Sketchfab For Unity\Dependencies\Shaders\GLTFBumpToNormal.shader" />
-<<<<<<< Updated upstream
-=======
     <None Include="Assets\ColorfulButtons\Credits.txt" />
->>>>>>> Stashed changes
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

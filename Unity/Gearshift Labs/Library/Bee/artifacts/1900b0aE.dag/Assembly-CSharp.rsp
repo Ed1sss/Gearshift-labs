@@ -358,20 +358,15 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.19f1-x86_64/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.19f1-x86_64/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
-<<<<<<< Updated upstream
-"Assets/CarController.cs"
-"Assets/Scripts/advancedCarControls.cs"
-"Assets/Scripts/CarController.cs"
-"Assets/Scripts/MainMenu.cs"
-=======
 "Assets/GameScript.cs"
 "Assets/Scripts/CarController.cs"
+"Assets/Scripts/Checkpoint.cs"
+"Assets/Scripts/LapTimer.cs"
 "Assets/Scripts/listScript.cs"
 "Assets/Scripts/MainMenu.cs"
 "Assets/Scripts/MusicScript.cs"
 "Assets/Scripts/SceneScript.cs"
 "Assets/Scripts/SettingsMenu.cs"
->>>>>>> Stashed changes
 "Assets/Scripts/Speedometer.cs"
 "Assets/Sketchfab For Unity/Scripts/AssetBrowser/SketchfabBrowserManager.cs"
 "Assets/Sketchfab For Unity/Scripts/AssetBrowser/SketchfabBrowserWindow.cs"
