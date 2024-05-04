@@ -41,6 +41,7 @@ public class CarController : MonoBehaviour
         ResetCar();
         GetInput();
         HandleMotor();
+        ApplyBreaking();
         HandleSteering();
         UpdateWheels();
         CarSounds();
@@ -74,20 +75,29 @@ public class CarController : MonoBehaviour
         Reset = Input.GetKey(KeyCode.R);
 
         // Breaking Input
-        isBreaking = Input.GetKey(KeyCode.Space);
+        ;
+        if (Input.GetKey(KeyCode.Space))
+        {
+            isBreaking = true; // Full acceleration
+            Debug.Log("IS BREAKING");
+    
+        }
+        else
+            isBreaking = false;
+ 
 
         if (Input.GetKeyDown(KeyCode.E) && CurrentGear < 5 && !hasShifted)
         {
             CurrentGear++;
-            Debug.Log("Upshifted to gear " + CurrentGear);
-            Debug.Log("MaxSpeed for gear " + maxSpeedsPerGear[CurrentGear] );
+            Debug.Log("Upshift");
+            Debug.Log(maxSpeedsPerGear[CurrentGear]);
             hasShifted = true; // Set the flag to true to indicate a shift action has been performed
         }
         else if (Input.GetKeyDown(KeyCode.Q) && CurrentGear > 0 && !hasShifted)
         {
             CurrentGear--;
-            Debug.Log("downshifted to gear " + CurrentGear);
-            Debug.Log("MaxSpeed for gear " + maxSpeedsPerGear[CurrentGear]);
+            Debug.Log("downshift");
+            Debug.Log(maxSpeedsPerGear[CurrentGear]);
             hasShifted = true; // Set the flag to true to indicate a shift action has been performed
         }
 
@@ -113,11 +123,8 @@ public class CarController : MonoBehaviour
                 isBreaking = false;
                 currentbreakForce = 0f;
             }
-            currentbreakForce = isBreaking ? breakForce : 0f;
-            // Adjust braking force based on whether handbrake is engaged
-       
-
-            ApplyBreaking();
+           
+    
         
         }
     private void CarSounds()
@@ -140,10 +147,23 @@ public class CarController : MonoBehaviour
     
     private void ApplyBreaking()
     {
-        frontRightWheelCollider.brakeTorque = currentbreakForce;
-        frontLeftWheelCollider.brakeTorque = currentbreakForce;
-        rearLeftWheelCollider.brakeTorque = currentbreakForce;
-        rearRightWheelCollider.brakeTorque = currentbreakForce;
+        if (isBreaking)
+        {
+            currentbreakForce = breakForce;
+            frontRightWheelCollider.brakeTorque = currentbreakForce;
+            frontLeftWheelCollider.brakeTorque = currentbreakForce;
+            rearLeftWheelCollider.brakeTorque = currentbreakForce;
+            rearRightWheelCollider.brakeTorque = currentbreakForce;
+        }
+        else
+        {
+            currentbreakForce = 0f;
+            frontRightWheelCollider.brakeTorque = currentbreakForce;
+            frontLeftWheelCollider.brakeTorque = currentbreakForce;
+            rearLeftWheelCollider.brakeTorque = currentbreakForce;
+            rearRightWheelCollider.brakeTorque = currentbreakForce;
+          
+        }
     }
    
 

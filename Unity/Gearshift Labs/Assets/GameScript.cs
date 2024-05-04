@@ -86,7 +86,7 @@ public class GameScript : MonoBehaviour
         // ** The speed must be clamped by the car controller **
         speed = targetbody.velocity.magnitude * 3.6f;
         float engineRPM = CalculateEngineRPM(speed,CurrentGear);
-        engineRPM *= 9.5f;
+        engineRPM *= 5f;
       
         float rpmRatio = engineRPM / (maxSpeedsPerGear[CurrentGear] * 1000f);
         float needleAngle = Mathf.Lerp(minSpeedArrowAngle, maxSpeedArrowAngle, rpmRatio);
