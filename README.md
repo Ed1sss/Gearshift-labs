@@ -35,7 +35,9 @@ Antras žingsnis yra prisijungti arduino prie kompiuterio. Arduino reikiamas val
 Pavyzdys kaip turi atrodyti arduino išvedami duomenys: `80 20 100`
 ### 3. Paleiskite interpretatoriaus scriptą
 Interpretatoriaus scriptą galima pasileisti per komandine eilute. Pirmiausia reikia nueiti į direktoriją kurioje yra išsaugots scriptas. Tai galima padaryti naudojant komandą `cd /direktorija`. Norint paleisti scriptą reikia įvykdyti komdanda `python ./interpreter.py`. Paleidus bus paprašyta nurodyti kurį serijinį portą naudoja arduino. Tai galite surasti atsidare device manager ir ports skiltyje susirade arduino
+
 ![](https://www.mathworks.com/help/matlab/supportpkg/win_dev_mngr_port.png)
+
 Pateiktame pavyzdyje reikėtų įvesti COM3
 ### 4. Paleidus interpretatorių pasirinkite interpretatoriaus režimą
 Paleidus interpretatoriu ir pasirinkus serial portą gausite tris pasirinkimus
@@ -43,11 +45,14 @@ Paleidus interpretatoriu ir pasirinkus serial portą gausite tris pasirinkimus
  1. Kalibracijos režimas (Calibration mode)
  2. Vairavimo režimas (Drive mode)
  3. Išeiti (Quit)
+ 
  Į komandine eilute įvedus pasirinkimo skaičių nueisite į atitinkamą meniu. Kalibracijos režime galite susikalibruoti savo įvestis, nuejus į ji ekrane bus išvestos instrukcijos kaip sukalibruoti įvestis.
  Vairavimo režime įvestis bus konvertuojamos į valdiklio įvestis ir galėsite žaisti žaidimus
  Galiausiai pasirinkus išeiti interpretatorius baigs savo darbą.
 ### 5. Susikonfiguokite x360ce emuliatorių
+
 Pasileiskite x360ce emuliatorių, tai padare išvysite tokį vaizdą:
+
 
 ![](https://i.ibb.co/SDTD9Nk/Screenshot-2024-05-18-191840.png)
 
