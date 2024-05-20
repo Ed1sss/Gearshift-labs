@@ -56,6 +56,7 @@ Pasileiskite x360ce emuliatorių, tai padare išvysite tokį vaizdą:
 
 ![](https://i.ibb.co/SDTD9Nk/Screenshot-2024-05-18-191840.png)
 
-Priklausomai nuo žaidžiamo žaidimo įvesčių reikia jas susikonfiguruoti. Tai galima padaryti paspaudus ant norimo konfiguruoti valdiklio mygtuko. Tai padarius reikės paspausti atitinkamą įvestį pvz. stabdžio pedalą kuria norime pririšti prie to mygtuko. Tai padarius programa automatiškai tai aptiks ir visas stabžio pedalo įvestis perduos kaip to mygtuko nuspaudimą ar panašiai. Taigi galiausiai beliks pasileisti žaidimą palaikantį valdiklių įvestis ir jį žaisti
+Priklausomai nuo žaidžiamo žaidimo įvesčių reikia jas susikonfiguruoti. Tai galima padaryti paspaudus ant norimo konfiguruoti valdiklio mygtuko. Tai padarius reikės paspausti atitinkamą įvestį pvz. stabdžio pedalą kuria norime pririšti prie to mygtuko. Tai padarius programa automatiškai tai aptiks ir visas stabžio pedalo įvestis perduos kaip to mygtuko nuspaudimą ar panašiai. Mūsų žaidimui greičio pedalo įvestis turi būti pririšta prie Right bumper, stabdžio pedalas prie Left bumper, vairo įvestys prie stick axis x, pavaros padidinimas prie Y, mažinimas prie X mygtukų 
+Taigi galiausiai beliks pasileisti žaidimą palaikantį valdiklių įvestis ir jį žaisti
 
 
